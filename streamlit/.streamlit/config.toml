@@ -1,0 +1,16 @@
+# https://docs.streamlit.io/develop/api-reference/configuration/config.toml
+
+# [client]
+# showErrorDetails = true
+# toolbarMode = "auto"
+
+# [theme]
+# primaryColor = "#1ABC9C"
+# backgroundColor = "#FFFFFF"
+
+[server]
+fileWatcherType = "poll"
+runOnSave = true
+
+[browser]
+gatherUsageStats = false

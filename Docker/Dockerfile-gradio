@@ -1,0 +1,18 @@
+# app/Dockerfile
+
+FROM python:3.12
+
+ENV TZ=Asia/Tokyo
+
+RUN  apt-get update && apt-get install -y \
+	libgl1-mesa-dev
+
+#RUN pip3 install -r requirements.txt
+RUN pip3 install --no-cache-dir \
+	numpy \
+	opencv-python \
+	scipy \
+	gradio \
+	loguru \
+	gradio-webrtc 
+
