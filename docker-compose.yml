@@ -19,7 +19,7 @@ services:
       
     volumes:
       - ./streamlit:/streamlit
-      - ./common/:/streamlit/utils
+      - ./common/:/streamlit/common
         
     entrypoint: streamlit run combined.py --server.port=6601 --server.address=0.0.0.0
     
@@ -39,7 +39,7 @@ services:
       
     volumes:
       - ./gradio:/gradio
-      - ./common/:/gradio/utils
+      - ./common/:/gradio/common
 
     environment:
       - GRADIO_SERVER_NAME=0.0.0.0

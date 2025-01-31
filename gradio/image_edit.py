@@ -1,7 +1,7 @@
 import numpy as np
 import gradio as gr
 
-from utils.utils import sepia
+from common.utils import sepia
 
 with gr.Blocks() as demo:
     gr.Interface(sepia, "image", "image", flagging_mode="never")

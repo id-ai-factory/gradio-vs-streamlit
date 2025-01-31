@@ -2,7 +2,7 @@ import numpy as np
 import gradio as gr
 import random
 
-from utils.utils import sepia
+from common.utils import sepia
 
 with gr.Blocks() as demo:
     uploaded_image = gr.Image()

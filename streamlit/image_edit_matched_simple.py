@@ -1,5 +1,5 @@
 import streamlit as st
-from utils.utils import sepia
+from common.utils import sepia
 from PIL import Image
 import numpy as np
 
