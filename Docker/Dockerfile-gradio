@@ -9,10 +9,11 @@ RUN  apt-get update && apt-get install -y \
 
 #RUN pip3 install -r requirements.txt
 RUN pip3 install --no-cache-dir \
+	loguru \
 	numpy \
 	opencv-python \
 	scipy \
+	matplotlib \
 	gradio \
-	loguru \
 	gradio-webrtc 
 

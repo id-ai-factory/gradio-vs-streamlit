@@ -1,0 +1,13 @@
+Month,Product Category,Sales,Profit,Units Sold,Average Price per Unit
+January,Electronics,20000,5000,100,200
+January,Clothing,15000,3000,200,75
+January,Home & Kitchen,10000,2000,150,66.67
+February,Electronics,25000,6000,120,208.33
+February,Clothing,16000,3500,210,76.19
+February,Home & Kitchen,12000,2500,160,75
+March,Electronics,30000,7000,130,230.77
+March,Clothing,18000,4000,220,81.82
+March,Home & Kitchen,15000,3000,170,88.24
+April,Electronics,28000,6500,125,224
+April,Clothing,17000,3700,215,79.07
+April,Home & Kitchen,14000,2700,165,84.85
