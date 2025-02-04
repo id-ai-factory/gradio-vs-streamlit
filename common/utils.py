@@ -17,13 +17,13 @@ def sepia(input_img):
     return sepia_img
 
 
-def summarize_diffs(diffs:difflib.SequenceMatcher, file_A, file_B):
+def summarize_diffs(diffs:difflib.SequenceMatcher, file_A, file_B, added=True, removed=True, replaced=True, unchanged=True,):
     summary = ["type,line_nr_A,line_nr_B,content_A,content_B"]
 
     for opcode in diffs.get_grouped_opcodes():
         for diff in opcode:
-            logger.debug(f"THe diff is: {diff}")
-            summary.append(",".join([str(c) for c in diff]) + f",{file_A[diff[1]:diff[2]]},{file_B[diff[2]:diff[3]]}")
+            if (added and diff[0]=='insert') or (removed and diff[0] == 'delete') or (unchanged and diff[0] == 'equal') or (replaced and diff[0] == 'replace'):
+                summary.append(",".join([str(c) for c in diff]) + f",{file_A[diff[1]:diff[2]]},{file_B[diff[2]:diff[3]]}")
 
     return "\n".join(summary)
 
@@ -156,13 +156,13 @@ def show_line_by_line_comparison_gradio(gr,
                         gr.Markdown(_markdown_column_contents(color, preface, diff, 0))
 
                         if diff[0] != 'insert':
-                            gr.Code(_tabulate_code(compare_to_lines[diff[1]:diff[2]]))
+                            gr.Code(_tabulate_code(compare_to_lines[diff[1]:diff[2]]), language="python")
 
                     with gr.Column():
                         gr.Markdown(_markdown_column_contents(color, preface, diff, 1))               
 
                         if diff[0] != 'delete':
-                            gr.Code(_tabulate_code(compare_with_lines[diff[3]:diff[4]]))
+                            gr.Code(_tabulate_code(compare_with_lines[diff[3]:diff[4]]), language="python")
 
         if diffs != opcodes[-1]:
             gr.Markdown("<h5 style='text-align: center; color: black;'>{}</h5>"

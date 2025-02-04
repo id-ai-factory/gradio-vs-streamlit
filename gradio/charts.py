@@ -16,7 +16,7 @@ with gr.Blocks(title="File Comparator") as demo:
     gr.LinePlot(df_melted, x="Month", y="Amount", color="Category")
 
     #%% Scatter Plot
-    gr.ScatterPlot(df)
+    gr.ScatterPlot(df, x= "Average Price per Unit", y="Profit")
 
     #%% Pie chart
     labels = df["Product Category"]

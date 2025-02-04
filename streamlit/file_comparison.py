@@ -1,8 +1,6 @@
 import streamlit as st
 import difflib
-import textwrap
 from common.utils import show_line_by_line_comparison, summarize_diffs
-
 
 with st.form("File comparison"):
     columns = st.columns(2)
@@ -51,16 +49,17 @@ if upload_button or "upload_pressed" in st.session_state :
 
             show_line_by_line_comparison(st, contents_A, contents_B, False)
 
+            checkboxes = []
             with st.form("Download Delta"):
                 cols = st.columns(4)
                 for symbol, col in zip(("++", "--", "≠", "=="), cols):
                     with col:
-                        st.checkbox(symbol, value=True)
+                        checkboxes.append(st.checkbox(symbol, value=True))
                 prepare_button = st.form_submit_button("Prepare download")
             
             if prepare_button or ("prepare_pressed" in st.session_state and st.session_state["prepare_pressed"]):
                 st.session_state["prepare_pressed"] = True
-                content = summarize_diffs(diffs, contents_A, contents_B)
+                content = summarize_diffs(diffs, contents_A, contents_B, *checkboxes)
                 st.download_button(
                     label="Download File",
                     key="download_btn",
