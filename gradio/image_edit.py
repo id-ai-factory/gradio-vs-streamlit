@@ -9,5 +9,4 @@ with gr.Blocks() as demo:
     # カメラのみにしたい場合は：
     # gr.Interface(sepia, gr.Image(sources="webcam"), "image", flagging_mode="never")
      
-
 demo.launch()

@@ -24,4 +24,5 @@ with gr.Blocks() as demo:
         "text",
         "markdown",
         flagging_mode="never")
+    
 demo.launch()

@@ -16,7 +16,10 @@ def sepia(input_img):
     sepia_img /= sepia_img.max()
     return sepia_img
 
-
+def code_example():
+    with open("image_edit.py") as f:
+        return f.read()
+    
 def summarize_diffs(diffs:difflib.SequenceMatcher, file_A, file_B, added=True, removed=True, replaced=True, unchanged=True,):
     summary = ["type,line_nr_A,line_nr_B,content_A,content_B"]
 
