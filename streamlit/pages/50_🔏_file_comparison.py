@@ -24,9 +24,9 @@ if upload_button or "upload_pressed" in st.session_state :
 
     valid_files = True
     if use_default_files:
-        with open(filename_A := "image_edit.py") as f :
+        with open(filename_A := "20_🖼️_image_edit.py") as f :
             contents_A = f.readlines()
-        with open(filename_B := "image_edit_matched.py") as f :
+        with open(filename_B := "21_🖼️_image_edit_matched.py") as f :
             contents_B = f.readlines()
     elif file_A and file_B:
         contents_A = [s.decode("utf-8") for s in file_A.readlines()]

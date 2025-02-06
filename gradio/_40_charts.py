@@ -32,4 +32,5 @@ with gr.Blocks(title="File Comparator") as demo:
 
     gr.Plot(fig1)
 
-demo.launch()
+if __name__ == "__main__":
+    demo.launch()

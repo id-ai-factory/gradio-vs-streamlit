@@ -22,4 +22,6 @@ with gr.Blocks() as demo:
 
     gr.DownloadButton() 
 
-demo.launch()
+
+if __name__ == "__main__":
+    demo.launch()

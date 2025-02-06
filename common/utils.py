@@ -17,8 +17,12 @@ def sepia(input_img):
     return sepia_img
 
 def code_example():
-    with open("image_edit.py") as f:
-        return f.read()
+    try:
+        with open("image_edit.py") as f:
+            return f.read("20_🖼️_image_edit.py")
+    except FileNotFoundError:
+        with open("_20_image_edit.py") as f:
+            return f.read()
     
 def summarize_diffs(diffs:difflib.SequenceMatcher, file_A, file_B, added=True, removed=True, replaced=True, unchanged=True,):
     summary = ["type,line_nr_A,line_nr_B,content_A,content_B"]

@@ -3,6 +3,22 @@ import streamlit as st
 
 from common.utils import code_example, sepia
 
+st.markdown("""
+<style>
+    h1 {
+      font-size: 16px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    div[data-testid="stExpanderDetails"]{
+        background-color: #FF00CC;
+    }
+    div[data-testid="stTextInputRootElement"]{
+        background-color: #1000FC;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 with st.form("image_processing_form"):
     cols = st.columns(2)
     with cols[0]:
@@ -34,5 +50,6 @@ with cols[0]:
 
 with cols[1]:
     st.code(code_example())
+
 
 st.download_button("Download", data="foo", use_container_width=True)

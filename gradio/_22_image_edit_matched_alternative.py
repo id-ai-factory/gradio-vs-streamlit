@@ -14,4 +14,5 @@ with gr.Blocks() as demo:
     uploaded_image.change(process_image, inputs=[uploaded_image], outputs=[processed_image])
     
 
-demo.launch()
+if __name__ == "__main__":
+    demo.launch()

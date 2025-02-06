@@ -21,7 +21,7 @@ services:
       - ./streamlit:/streamlit
       - ./common/:/streamlit/common
         
-    entrypoint: streamlit run combined.py --server.port=6601 --server.address=0.0.0.0
+    entrypoint: streamlit run streamlit_demo.py --server.port=6601 --server.address=0.0.0.0
     
 
   gradio:
@@ -48,4 +48,4 @@ services:
       - GRADIO_ANALYTICS_ENABLED=True
 
     
-    entrypoint: gradio combined.py
+    entrypoint: gradio _00_gradio_demo.py

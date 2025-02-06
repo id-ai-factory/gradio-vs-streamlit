@@ -25,4 +25,5 @@ with gr.Blocks() as demo:
         "markdown",
         flagging_mode="never")
     
-demo.launch()
+if __name__ == "__main__":
+    demo.launch()

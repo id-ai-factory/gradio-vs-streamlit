@@ -13,4 +13,5 @@ with gr.Blocks() as demo:
             gr.Image(sepia(image))
     
 
-demo.launch()
+if __name__ == "__main__":
+    demo.launch()
