@@ -2,6 +2,7 @@ import numpy as np
 from loguru import logger
 import difflib
 import textwrap
+from time import sleep
 
 def sepia(input_img):
     if input_img is None:
@@ -174,3 +175,9 @@ def show_line_by_line_comparison_gradio(gr,
         if diffs != opcodes[-1]:
             gr.Markdown("<h5 style='text-align: center; color: black;'>{}</h5>"
                 .format('------------'))
+            
+
+def simulated_load(span_seconds=5):
+    logger.debug(f"Starting a sleep of {span_seconds} seconds")
+    sleep(span_seconds)
+    logger.debug(f"Finished waiting {span_seconds} seconds")

@@ -16,5 +16,5 @@ RUN pip3 install --no-cache-dir \
 	matplotlib \
 	plotly \
 	streamlit \
-	streamlit-webrtc 
-	
+	streamlit-webrtc \
+	streamlit-server-state
