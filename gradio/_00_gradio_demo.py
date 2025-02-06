@@ -1,5 +1,7 @@
 import gradio as gr
 
+from _71_streamlit_portal_dynamic_url import iframe_js, add_iframe_block
+# The import above is a special case if running special JS is needed
 
 # A simpler demonstration
 # with gr.Blocks() as demo:
@@ -9,8 +11,8 @@ import gradio as gr
 #     gr.Number()
 
 
-with gr.Blocks() as demo:
-    gr.Markdown("# Streamlit Demo")
+with gr.Blocks(js = iframe_js) as demo: #The HS is necessary for the dynamic URL
+    gr.Markdown("# Gradio Demo")
 
     gr.Markdown("左のメニューからデモページを選択してください")
     gr.Markdown("説明省は[このリンク](x)でアクセスできます")
@@ -47,6 +49,14 @@ with demo.route("ファイル比較", "/file_comparison"):
 
 with demo.route("テーマお試し", "/theme_change"):
     import _60_theme_change
+
+
+with demo.route("Streamlitポータル（固定）", "/streamlit_portal"):
+    import _70_streamlit_portal
+
+    
+with demo.route("Streamlitポータル（動的）", "/streamlit_portal_dynamic"):
+    add_iframe_block()
     
 
 demo.launch()

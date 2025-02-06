@@ -44,7 +44,7 @@ def calculate_difference(use_demo_files, filename_A, filename_B):
     ]
 
 def prepare_download_path(contents, selected_checkboxes):
-    if not contents:
+    if not contents or selected_checkboxes is None:
         return None
     contents_A, contents_B = contents
     added, removed, replaced, unchanged = [element in selected_checkboxes for element in DIFF_SYMBOLS]
