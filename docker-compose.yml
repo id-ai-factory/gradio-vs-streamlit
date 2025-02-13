@@ -20,8 +20,10 @@ services:
     volumes:
       - ./streamlit:/streamlit
       - ./common/:/streamlit/common
-        
-    entrypoint: streamlit run streamlit_demo.py --server.port=6601 --server.address=0.0.0.0
+
+            
+    entrypoint: streamlit run streamlit_demo.py --server.port=6601 --server.address=0.0.0.0   
+    #entrypoint: streamlit run authentication/authentication_demo.py --server.port=6601 --server.address=0.0.0.0
     
 
   gradio:
@@ -47,5 +49,6 @@ services:
       - GRADIO_NUM_PORTS=1 #自動で試されるポートの数
       - GRADIO_ANALYTICS_ENABLED=True
 
-    
     entrypoint: gradio _00_gradio_demo.py
+    # entrypoint: gradio fastapi_integration.py
+    # entrypoint: uvicorn fastapi_integration:app --port 6602 --host 0.0.0.0 --reload 
