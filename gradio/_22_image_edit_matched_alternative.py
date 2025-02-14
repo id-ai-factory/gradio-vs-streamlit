@@ -4,14 +4,15 @@ import random
 
 from common.utils import sepia
 
-def process_image(image):
-    return gr.Image(sepia(image), visible=True)
-
-with gr.Blocks() as demo:
+with gr.Blocks(title="Image Demo v3") as demo:
     uploaded_image = gr.Image()
     processed_image = gr.Image(visible=False)
 
-    uploaded_image.change(process_image, inputs=[uploaded_image], outputs=[processed_image])
+    uploaded_image.change(
+        lambda image: gr.Image(sepia(image), visible=True), 
+        inputs=[uploaded_image], 
+        outputs=[processed_image]
+    )
     
 
 if __name__ == "__main__":

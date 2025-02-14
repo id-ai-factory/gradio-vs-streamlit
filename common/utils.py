@@ -18,12 +18,14 @@ def sepia(input_img):
     return sepia_img
 
 def code_example():
-    try:
-        with open("image_edit.py") as f:
-            return f.read("20_🖼️_image_edit.py")
-    except FileNotFoundError:
-        with open("_20_image_edit.py") as f:
-            return f.read()
+    file_paths=["20_🖼️_image_edit.py", "_20_image_edit.py","pages/20_🖼️_image_edit.py"]
+    for file_path in file_paths:
+        try:
+            with open(file_path) as f:
+                return f.read()
+        except FileNotFoundError:
+            pass
+    raise FileExistsError(f"Could not find any of the following files: {file_paths}")
     
 def summarize_diffs(diffs:difflib.SequenceMatcher, file_A, file_B, added=True, removed=True, replaced=True, unchanged=True,):
     summary = ["type,line_nr_A,line_nr_B,content_A,content_B"]
@@ -78,10 +80,12 @@ def show_line_by_line_comparison_streamlit(st,
 
     prev_end = [-1, -1]
     opcodes = list(smatch.get_grouped_opcodes())
+    idx = 0
     for diffs in opcodes:
         for diff in diffs:
             if show_context or diff[0] !='equal':
-                diff_column = st.columns(2)
+                idx+=1
+                
                 if diff[0]=='insert':
                     preface = '++'
                     color='green'
@@ -94,7 +98,10 @@ def show_line_by_line_comparison_streamlit(st,
                 else:
                     preface = ''
                     color = 'black'
-    
+                
+                with st.expander(f"{idx} {preface}", expanded=True):
+                    diff_column = st.columns(2)
+                    
                 for i in range(2):
                     with diff_column[i]:
                         st.markdown('<p style = color:{}>{} {} ~ {}　行目'.format(color, preface, diff[(i+1)*2-1], diff[(i+1)*2]),
@@ -141,6 +148,7 @@ def show_line_by_line_comparison_gradio(gr,
     smatch = difflib.SequenceMatcher(a= compare_to_lines, b= compare_with_lines)
 
     opcodes = list(smatch.get_grouped_opcodes())
+    idx = 0
     for diffs in opcodes:
         for diff in diffs:
             if show_context or diff[0] !='equal':
@@ -159,18 +167,20 @@ def show_line_by_line_comparison_gradio(gr,
                     preface = ''
                     color = 'black'
                 
-                with gr.Row():
-                    with gr.Column():
-                        gr.Markdown(_markdown_column_contents(color, preface, diff, 0))
+                idx += 1
+                with gr.Accordion(f"{idx} {preface}"):
+                    with gr.Row():
+                        with gr.Column():
+                            gr.Markdown(_markdown_column_contents(color, preface, diff, 0))
 
-                        if diff[0] != 'insert':
-                            gr.Code(_tabulate_code(compare_to_lines[diff[1]:diff[2]]), language="python")
+                            if diff[0] != 'insert':
+                                gr.Code(_tabulate_code(compare_to_lines[diff[1]:diff[2]]), language="python")
 
-                    with gr.Column():
-                        gr.Markdown(_markdown_column_contents(color, preface, diff, 1))               
+                        with gr.Column():
+                            gr.Markdown(_markdown_column_contents(color, preface, diff, 1))               
 
-                        if diff[0] != 'delete':
-                            gr.Code(_tabulate_code(compare_with_lines[diff[3]:diff[4]]), language="python")
+                            if diff[0] != 'delete':
+                                gr.Code(_tabulate_code(compare_with_lines[diff[3]:diff[4]]), language="python")
 
         if diffs != opcodes[-1]:
             gr.Markdown("<h5 style='text-align: center; color: black;'>{}</h5>"

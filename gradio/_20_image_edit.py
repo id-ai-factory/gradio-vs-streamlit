@@ -3,7 +3,7 @@ import gradio as gr
 
 from common.utils import sepia
 
-with gr.Blocks() as demo:
+with gr.Blocks(title="Image Demo") as demo:
     gr.Interface(sepia, "image", "image", flagging_mode="never")
     
     # カメラのみにしたい場合は：

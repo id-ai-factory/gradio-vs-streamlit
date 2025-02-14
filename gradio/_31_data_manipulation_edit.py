@@ -9,7 +9,7 @@ df['date_registered'] = pd.to_datetime(df['date_registered'])
 def print_results(df):
     logger.info(f"Jdoe updated to: {df.loc[df["username"]=="jdoe"]}")
 
-with gr.Blocks() as demo:
+with gr.Blocks(title = "Data Manipulation") as demo:
     data_frame_interactive = gr.DataFrame(
         df, 
         interactive=True,

@@ -28,7 +28,7 @@ function createLocalhostIframe() {
 }
 """
 
-def add_iframe_block():
+def add_iframe_block(title="Streamlit Portal Dynamic"):
     gr.Markdown("",visible=False, elem_id="the-iframe-goes-under-this")
     
 

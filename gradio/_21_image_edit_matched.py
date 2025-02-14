@@ -4,7 +4,7 @@ import random
 
 from common.utils import sepia
 
-with gr.Blocks() as demo:
+with gr.Blocks(title="Image demo v2") as demo:
     uploaded_image = gr.Image()
 
     @gr.render(inputs=uploaded_image)

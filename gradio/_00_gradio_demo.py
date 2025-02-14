@@ -1,6 +1,6 @@
 import gradio as gr
 
-from _71_streamlit_portal_dynamic_url import iframe_js, add_iframe_block
+from _61_streamlit_portal_dynamic_url import iframe_js, add_iframe_block
 # The import above is a special case if running special JS is needed
 
 # A simpler demonstration
@@ -11,7 +11,7 @@ from _71_streamlit_portal_dynamic_url import iframe_js, add_iframe_block
 #     gr.Number()
 
 
-with gr.Blocks(js = iframe_js) as demo: #The HS is necessary for the dynamic URL
+with gr.Blocks(js = iframe_js, title="Gradio Multi Page Application") as demo: #The HS is necessary for the dynamic URL
     gr.Markdown("# Gradio Demo")
 
     gr.Markdown("左のメニューからデモページを選択してください")
@@ -32,10 +32,10 @@ with demo.route("画像編集（合わせ）２", "/image_edit_matched_a"):
     import _22_image_edit_matched_alternative
 
 with demo.route("行列、確認版", "/data_manipulator_show"):
-    import _31_data_manipulator_show
+    import _30_data_manipulation_show
 
 with demo.route("行列、編集版", "/data_manipulator_edit"):
-    import _32_data_manipulation_edit
+    import _31_data_manipulation_edit
 
 with demo.route("グラフ", "/chart"):
     import _40_charts
@@ -47,12 +47,8 @@ with demo.route("ファイル比較", "/file_comparison"):
 # with demo.route("ファイル比較、代替v", "/file_comparison_alternative"):
 #     import _51_file_comparison_alternative
 
-with demo.route("テーマお試し", "/theme_change"):
-    import _60_theme_change
-
-
 with demo.route("Streamlitポータル（固定）", "/streamlit_portal"):
-    import _70_streamlit_portal
+    import _60_streamlit_portal
 
     
 with demo.route("Streamlitポータル（動的）", "/streamlit_portal_dynamic"):

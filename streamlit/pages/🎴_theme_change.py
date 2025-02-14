@@ -1,7 +1,5 @@
 import streamlit as st
-
-
-from common.utils import code_example, sepia
+from common.utils import code_example
 
 st.markdown("""
 <style>

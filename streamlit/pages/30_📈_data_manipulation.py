@@ -1,11 +1,12 @@
 import streamlit as st
 import pandas as pd
+from loguru import logger
 
 df = pd.read_csv('common/user_data.csv')
 df['date_registered'] = pd.to_datetime(df['date_registered'])
 
 # 編集可能
-# st.data_editor(
+# new_df = st.data_editor(
 # 編集不可
 st.dataframe(
     df,
@@ -17,3 +18,5 @@ st.dataframe(
         "credits_used":None
     }
 ) 
+
+# logger.info(f"Jdoe is now: {new_df.loc[new_df["username"]=="jdoe"]}")
