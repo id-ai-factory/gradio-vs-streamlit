@@ -24,7 +24,8 @@ services:
       - ./common/:/streamlit/heavy_load/common
 
     # entrypoint: streamlit run 🏠_streamlit_demo.py --server.port=6601 --server.address=0.0.0.0   
-    entrypoint: streamlit run heavy_load/heavy_load.py --server.port=6601 --server.address=0.0.0.0   
+    # entrypoint: streamlit run heavy_load/heavy_load.py --server.port=6601 --server.address=0.0.0.0   
+    entrypoint: streamlit run javascript/javascript_demo.py --server.port=6601 --server.address=0.0.0.0
     #entrypoint: streamlit run authentication/authentication_demo.py --server.port=6601 --server.address=0.0.0.0
     
 
@@ -52,6 +53,7 @@ services:
       - GRADIO_ANALYTICS_ENABLED=True
 
     # entrypoint: gradio _00_gradio_demo.py
-    entrypoint: gradio heavy_load.py
+    entrypoint: gradio javascript_demo.py
     # entrypoint: gradio fastapi_integration.py
     # entrypoint: uvicorn fastapi_integration:app --port 6602 --host 0.0.0.0 --reload 
+    # entrypoint: gradio javascript_demo.py
