@@ -20,17 +20,20 @@ def check_server_first(ss):
     return "Finished loading (per restart)"
 
 with gr.Blocks() as demo:
-    state = gr.State({})
 
     with gr.Tab("First"):
+        simulated_load()
         gr.Markdown("Simple Page")
     
     with gr.Tab("Second"):
         gr.Markdown("Loading (when the server starts)")
         simulated_load()
-        server_model = True
         gr.Markdown("Loaded")
-    gr.Markdown("Just text")
+    gr.Markdown("Text outside of the tabs")
+    
+    #---
+    state = gr.State({})
+    server_model = True
 
     status_text = gr.Label("Not loading")
     with gr.Row():
