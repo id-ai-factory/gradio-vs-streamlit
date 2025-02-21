@@ -1,6 +1,6 @@
 import gradio as gr
 
-from _61_streamlit_portal_dynamic_url import iframe_js, add_iframe_block
+from _71_streamlit_portal_dynamic_url import iframe_js, add_iframe_block
 # The import above is a special case if running special JS is needed
 
 # A simpler demonstration
@@ -40,15 +40,28 @@ with demo.route("行列、編集版", "/data_manipulator_edit"):
 with demo.route("グラフ", "/chart"):
     import _40_charts
 
+with demo.route("チャットボット（シンプル）", "/chatbot_simple"):
+    import _50_chatbot_simple
+
+with demo.route("チャットボット（ストリーム）", "/chatbot_streaming"):
+    import _51_chatbot_streaming
+
+with demo.route("チャットボット（ツール）", "/chatbot_tool_usage"):
+    import _52_chatbot_tool_usage
+
+with demo.route("チャットボット（本物）", "/chatbot_real"):
+    import _53_chatbot_actual
+
+
 with demo.route("ファイル比較", "/file_comparison"):
-    import _50_file_comparison
+    import _60_file_comparison
 
 # v5.15で、マルチページでCheckboxGroupがエラーを起こします
 # with demo.route("ファイル比較、代替v", "/file_comparison_alternative"):
-#     import _51_file_comparison_alternative
+#     import _61_file_comparison_alternative
 
 with demo.route("Streamlitポータル（固定）", "/streamlit_portal"):
-    import _60_streamlit_portal
+    import _70_streamlit_portal
 
     
 with demo.route("Streamlitポータル（動的）", "/streamlit_portal_dynamic"):

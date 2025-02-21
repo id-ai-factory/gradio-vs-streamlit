@@ -70,18 +70,21 @@ def send_message(chat_history:list[dict[str,str]], rag = ""):
 
 def complete_token(history, message_buffer):
     """ Yields the reply token by token """
-    for chunk in message_buffer:
-        character  = chunk.choices[0].delta.content if chunk.choices else ""
-        history[-1]['content'] += character or ""
+    if message_buffer:
+        for chunk in message_buffer:
+            character  = chunk.choices[0].delta.content if chunk.choices else ""
+            history[-1]['content'] += character or ""
+            yield history
+    else:
         yield history
 
 #%% Initialization
 
 # Don't forget to remove the API key if you commit the code or a modified version of it to your own repo
-client = OpenAI(api_key="<not set>")
+# client = OpenAI(api_key="<not set>")
 # Alternatively use an environmental variable
-# import os
-# client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "<not set>"))
+import os
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "<not set>"))
 
 #%% GUI code
 with gr.Blocks() as demo:
@@ -97,7 +100,7 @@ with gr.Blocks() as demo:
     # We need somewhere to store the generator for the token chunks
     chunks = gr.State(None)
 
-    def respond(message:dict, chat_history:list[dict[str,str]], response):
+    def respond(message:dict, chat_history:list[dict[str,str]]):
         """ Initiates the response"""
 
         # If the user has added test, it is added to the history
@@ -116,12 +119,16 @@ with gr.Blocks() as demo:
         
         # If the context is a dictionary, it is an image, otherwise it is text
         # In both cases the assistant response is initialized to emptystring
-        if isinstance(extra_context, dict):
-            response = analyze_image(chat_history, prompt, file_path, Path(file_path).suffix[1:])
-            chat_history.append({"role": "assistant", "content": ""})
-        else:
-            response = send_message(chat_history, extra_context)
-            chat_history.append({"role":"assistant", "content": ""})
+        try:
+            if isinstance(extra_context, dict):
+                response = analyze_image(chat_history, prompt, file_path, Path(file_path).suffix[1:])
+                chat_history.append({"role": "assistant", "content": ""})
+            else:
+                response = send_message(chat_history, extra_context)
+                chat_history.append({"role":"assistant", "content": ""})
+        except Exception as ex:
+            chat_history.append({"role":"assistant", "content": f"The following error occurred: {ex}"})
+            response = ""
 
         # We set the user input to emptystring and disable new input
         return gr.MultimodalTextbox("",interactive=False), chat_history, response
@@ -136,4 +143,5 @@ with gr.Blocks() as demo:
         then(complete_token, [chatbot, chunks], chatbot).\
             then(lambda:gr.MultimodalTextbox(interactive=True), outputs=msg)
 
-demo.launch()
+if __name__ == "__main__":
+    demo.launch()

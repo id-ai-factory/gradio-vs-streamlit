@@ -13,4 +13,5 @@ with gr.Blocks() as demo:
 
     msg.submit(respond, [msg, chatbot], [msg, chatbot])
 
-demo.launch()
+if __name__ == "__main__":
+    demo.launch()

@@ -25,6 +25,7 @@ services:
       - ./common/:/streamlit/continuous_updates/common
 
     entrypoint: streamlit run 🏠_streamlit_demo.py --server.port=6601 --server.address=0.0.0.0    
+    # entrypoint: streamlit run pages/_10_simple_text.py --server.port=6601 --server.address=0.0.0.0    
     # entrypoint: streamlit run heavy_load/heavy_load.py --server.port=6601 --server.address=0.0.0.0   
     # entrypoint: streamlit run javascript/javascript_demo.py --server.port=6601 --server.address=0.0.0.0
     #entrypoint: streamlit run authentication/authentication_demo.py --server.port=6601 --server.address=0.0.0.0

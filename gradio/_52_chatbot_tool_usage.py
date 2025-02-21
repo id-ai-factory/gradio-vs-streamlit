@@ -20,6 +20,9 @@ with gr.Blocks() as demo:
         # For the use case of this demo we will save the last file
         for file in message["files"]:
             chat_history.append({"role": "user", "content": {"path": (last_file := file)}})
+            break
+        else:
+            last_file = ""
             
         # Add text. I prefer text above, but it was easier to screen caputre this way
         if message["text"] is not None:
@@ -35,11 +38,16 @@ with gr.Blocks() as demo:
                 metadata={"title": "🛠️ Used tool: 🖼️ Image Processing"})
         )
         # The content can be most Gradio objects
-        chat_history.append({"role":"assistant", "content": gr.Image(process_file(last_file))})
+        if last_file:
+            chat_history.append({"role":"assistant", "content": gr.Image(process_file(last_file))})
+        else:
+            chat_history.append({"role":"assistant", "content": "This demo requires an attached image"})
 
         return "", chat_history
 
     # The submit is the same as in the simple example; the only difference is the datatype of the msg obj
     msg.submit(respond, [msg, chatbot], [msg, chatbot])
 
-demo.launch()
+
+if __name__ == "__main__":
+    demo.launch()

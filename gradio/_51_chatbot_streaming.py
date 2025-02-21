@@ -22,4 +22,6 @@ with gr.Blocks() as demo:
     msg.submit(add_user_message, [msg, chatbot, next_message],[msg, chatbot], queue=False)\
             .then(bot_reply, [chatbot,next_message], chatbot)
     
-demo.launch()
+
+if __name__ == "__main__":    
+    demo.launch()
