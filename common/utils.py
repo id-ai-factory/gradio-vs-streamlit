@@ -3,6 +3,7 @@ from loguru import logger
 import difflib
 import textwrap
 from time import sleep
+import random
 
 def sepia(input_img):
     if input_img is None:
@@ -191,3 +192,11 @@ def simulated_load(span_seconds=5):
     logger.debug(f"Starting a sleep of {span_seconds} seconds")
     sleep(span_seconds)
     logger.debug(f"Finished waiting {span_seconds} seconds")
+
+def sensor_data():
+    if not hasattr(sensor_data, "last_value"):
+        sensor_data.last_value = 20
+    
+    sensor_data.last_value += random.random()*4-2
+
+    return round(sensor_data.last_value, 2)
