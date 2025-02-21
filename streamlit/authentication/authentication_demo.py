@@ -33,13 +33,16 @@ def check_password():
     # Show inputs for username + password.
     login_form()
     if "password_correct" in st.session_state:
-        st.error("😕 User not known or password incorrect")
+        st.error("Username or password incorrect")
     return False
 
 
-if not check_password():
+if not st.session_state.get("password_correct", False) and not check_password():
     st.stop()
 
 # Main Streamlit app starts here
-st.write("Here goes your normal Streamlit app...")
-st.button("Click me")
+st.write("You have successfully logged in")
+logout = st.button("Logout")
+if logout:
+    st.session_state["password_correct"] = False
+    st.rerun()

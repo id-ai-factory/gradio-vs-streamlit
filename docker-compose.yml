@@ -57,4 +57,3 @@ services:
     # entrypoint: gradio javascript_demo.py
     # entrypoint: gradio fastapi_integration.py
     # entrypoint: uvicorn fastapi_integration:app --port 6602 --host 0.0.0.0 --reload 
-    # entrypoint: gradio javascript_demo.py
