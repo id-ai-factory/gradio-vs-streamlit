@@ -4,6 +4,8 @@ import difflib
 import textwrap
 from time import sleep
 import random
+import io
+from PIL import Image
 
 def sepia(input_img):
     if input_img is None:
@@ -17,6 +19,12 @@ def sepia(input_img):
     sepia_img = input_img.dot(sepia_filter.T)
     sepia_img /= sepia_img.max()
     return sepia_img
+
+def numpy_to_png(image):
+    img_byte_arr = io.BytesIO()
+    pil_image = Image.fromarray(image, mode="RGB")
+    pil_image.save(img_byte_arr, format='PNG')
+    return img_byte_arr.getvalue()
 
 def code_example():
     file_paths=["20_🖼️_image_edit.py", "_20_image_edit.py","pages/20_🖼️_image_edit.py"]

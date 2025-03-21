@@ -9,12 +9,12 @@ RUN  apt-get update && apt-get install -y \
 
 #RUN pip3 install -r requirements.txt
 RUN pip3 install --no-cache-dir \
-	loguru \
-	numpy \
-	opencv-python \
-	scipy \
-	matplotlib \
-	plotly \
-	gradio>=5.15 \
+	loguru==0.7.3 \
+	numpy==2.2.3 \
+	opencv-python==4.11.0.86 \
+	scipy==1.15.2 \
+	matplotlib==3.10.1 \
+	plotly==6.0.0 \
+	gradio==5.20 \
 	gradio-webrtc \
-	openai
+	openai==1.65.2
